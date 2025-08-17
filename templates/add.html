@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% from 'bootstrap5/form.html' import render_form %}
+<html lang="en" class="h-100" data-bs-theme="light">
+
+<body class="d-flex h-100 text-center text-bg-dark">
+{% include "head.html" %}
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+<header class="mb-auto"></header>
+<main class="px-3">
+<div class="content">
+    <h1 class="heading">Add a Movie</h1>
+    <div style="flex-direction: column; gap: 10px; align-items: center;font-weight: bold;">
+<form action="{{url_for('add')}}"  method="POST" >
+      {{ form.hidden_tag() }}
+  {{ render_form(form, novalidate=True, button_map={'submit': 'btn btn-outline-warning'}) }}
+
+
+
+</form></div></div>
+</main>
+    {% include "footer.html" %}
+</div>
+</body>
+</html>

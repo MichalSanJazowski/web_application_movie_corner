@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"  data-bs-theme="light">
+
+<body class="d-flex min-vh-100 text-center text-bg-dark">
+{%include "head.html" %}
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="padding-top: 84px;">
+  <div class="side-bar left-bar"
+     style="position:fixed; top:80px; bottom:0; left:20px; width:200px; z-index:0;pointer-events:none;opacity:0.5;">
+  <img src="static/assets/side-one.webp"
+       style="width:100%; height:100%; object-fit:cover;">
+</div>
+
+<div class="side-bar right-bar"
+     style="position:fixed; top:80px; bottom:0; right:20px; width:200px; z-index:0;pointer-events:none;opacity:0.5;">
+  <img src="static/assets/side-two.webp"
+       style="width:100%; height:100%; object-fit:cover;">
+</div>
+
+
+
+<div class="container">
+  <h1 class="heading">Popular TV Series</h1>
+  <p class="description">Check it !</p>
+{% for img in img_url %}
+        {% set item_1 = img_url[loop.index-1] %}
+        {% set item_2 = title[loop.index-1] %}
+        {% set item_3 = year[loop.index-1] %}
+        {% set item_4 = descript[loop.index-1] %}
+  <div class="card" >
+    <div class="front" style="background-image:url(https://image.tmdb.org/t/p/w500/{{item_1}})">
+        <p class="large"></p>
+    </div>
+    <div class="back">
+      <div>
+    <div class="title"> {{item_2}} <span class="release_date"> ({{item_3}}) </span></div>
+        <div class="rating">
+            <label></label>
+          <i class="fas fa-star star"></i>
+        </div>
+          <p class="review"></p>
+        <p class="overview">
+            {{item_4}}
+        </p>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+    {% endfor %}
+</div>
+
+
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+
+{% include "footer.html" %}
+
+</div></body>
+</html>
+
+
+

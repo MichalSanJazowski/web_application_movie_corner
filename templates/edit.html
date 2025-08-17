@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% from 'bootstrap5/form.html' import render_form %}
+<html lang="en" class="h-100" data-bs-theme="light">
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+{%include "head.html" %}
+
+<div class="container">
+<form action="{{url_for('edit')}}" method="POST">
+      {{ form.hidden_tag() }}
+  <input type="hidden" name="movie_id" value="{{ name.id }}">
+<div class="content" style="flex-direction: column; gap: 10px; align-items: center;">
+
+  <h1 class="heading">Movie Title: {{name.title}}</h1>
+  <p class="description">Edit Movie Rating</p>
+  {{ render_form(form, novalidate=True,button_map={'submit': 'btn btn-outline-success'}) }}
+
+
+</div>
+</form>
+</div>
+
+
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+
+{% include "footer.html" %}
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<body class="d-flex min-vh-100 text-center text-bg-dark">
+{% include "head.html" %}
+<div class="container" id="select-list">
+    <h1 class="heading">Select Movie</h1>
+  <p>
+      {% for x in range(how_many) %}
+
+
+    <ul>
+
+<a href="{{ url_for('select', movie_id=result[x]['id']) }}" type="submit">
+  {{ result[x]['title'] }} ---- {{ result[x]['release_date'] }}
+</a></ul>
+      {% endfor %}
+  </p>
+
+</div>
+
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+
+{% include "footer.html" %}
+
+<script src="static/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" class="astro-vvvwv3sm"></script>
+</body>
+</html>
+
+
+

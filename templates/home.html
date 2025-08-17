@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="light">
+
+<body class="d-flex h-100 text-center text-bg-dark">
+{% include "head.html" %}
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="padding-top: 84px;">
+  <div class="side-bar left-bar"
+     style="position:fixed; top:0; bottom:0; left:20px; width:200px; z-index:0;opacity:0.5;">
+  <img src="static/assets/side-one.webp"
+       style="width:100%; height:100%; object-fit:cover;">
+</div>
+
+<div class="side-bar right-bar"
+     style="position:fixed; top:0; bottom:0; right:20px; width:200px; z-index:0;opacity:0.5;">
+  <img src="static/assets/side-two.webp"
+       style="width:100%; height:100%; object-fit:cover;">
+</div>
+<header class="d-flex justify-content-center align-items-center flex-grow-1">
+  <div id="articleCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="max-width: 1000px; width: 100%;">
+<h1 class="heading" style="padding-top: 44px">Movie news !</h1>
+  <p class="description">The latest movie news on the movies you're most interested in seeing.</p>
+    <div class="carousel-inner">
+      {% for image in images %}
+        {% set item_1 = images[loop.index-1] %}
+        {% set item_2 = titles[loop.index-1] %}
+        {% set item_3 = article_link[loop.index-1] %}
+      <div class="carousel-item {% if loop.first %}active{% endif %}">
+        <img src="{{item_1}}" class="d-block w-100" alt="Art 1" style="object-fit: contain; height: 300px;">
+        <div class="overlay d-flex flex-column justify-content-center align-items-start p-4">
+          <h1 class="text-white fw-bold"
+    style="font-family: 'Monaco'">
+  <a href="https://screenrant.com/{{ item_3 }}"
+     class="text-white text-decoration-none" id="titleofarticle" style="font: inherit;">
+    {{ item_2 }}
+  </a>
+</h1>
+        </div>
+      </div>
+{% endfor %}
+
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#articleCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#articleCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+
+  </div>
+</header>
+{% include "footer.html" %}
+</div>
+</body>
+</html>
