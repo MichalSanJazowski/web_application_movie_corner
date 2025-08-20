@@ -39,8 +39,8 @@
         </p>
 
 
-<a href="{{ url_for('edit',movie_name=movie.title, movie_id=movie.id)}}" class="btn btn-outline-success">Update</a>
-          <form action="{{url_for('delete',movie_id=movie.id)}}" method="POST">
+<a href="{{ url_for('movies.edit',movie_name=movie.title, movie_id=movie.id)}}" class="btn btn-outline-success">Update</a>
+          <form action="{{url_for('movies.delete',movie_id=movie.id)}}" method="POST">
       {{ delete_form.hidden_tag() }}<button type="submit"  class="btn btn-outline-danger">Delete</button>
 
 
@@ -53,7 +53,7 @@
     {% endfor %}
 </div>
 <div class="container text-center add">
-<a href="{{url_for('add')}}" class="btn btn-outline-warning">Add Movie</a>
+<a href="{{url_for('movies.add')}}" class="btn btn-outline-warning">Add Movie</a>
 </div>
 
 

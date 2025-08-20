@@ -10,7 +10,7 @@
 <div class="content">
     <h1 class="heading">Add a Movie</h1>
     <div style="flex-direction: column; gap: 10px; align-items: center;font-weight: bold;">
-<form action="{{url_for('add')}}"  method="POST" >
+<form action="{{url_for('movies.add')}}"  method="POST" >
       {{ form.hidden_tag() }}
   {{ render_form(form, novalidate=True, button_map={'submit': 'btn btn-outline-warning'}) }}
 
