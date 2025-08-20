@@ -4,12 +4,15 @@ from flask import Flask
 from .config import Config
 from .extensions import db, login_manager, bootstrap, ckeditor, session_ext
 from .models import User
+from pathlib import Path
 
+ROOT_DIR = Path(__file__).resolve().parents[1]
 def create_app():
     app = Flask(
         __name__,
-        template_folder=os.path.join(os.getcwd(), "templates"),
-        static_folder=os.path.join(os.getcwd(), "static"),
+        template_folder=str(ROOT_DIR / "templates"),
+        static_folder=str(ROOT_DIR / "static"),
+        instance_path=str(ROOT_DIR / "instance"),
     )
     app.config.from_object(Config)
 
