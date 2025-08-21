@@ -1,107 +1,64 @@
 <!DOCTYPE html>
-<html lang="en"  data-bs-theme="light">
-{% include "head.html" %}
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="padding-top: 84px;">
-  <div class="side-bar left-bar"
-     style="position:fixed; top:80px; bottom:0; left:20px; width:200px; z-index:0;pointer-events:none;opacity:0.5;">
-  <img src="static/assets/side-one.webp"
-       style="width:100%; height:100%; object-fit:cover;">
-</div>
+<html lang="en" data-bs-theme="light">
+  {% include "head.html" %}
+  <body class="text-bg-dark">
+  <div class="cover-container w-100 mx-auto flex-column" style="padding-top: 84px;">
 
-<div class="side-bar right-bar"
-     style="position:fixed; top:80px; bottom:0; right:20px; width:200px; z-index:0;pointer-events:none;opacity:0.5;">
-  <img src="static/assets/side-two.webp"
-       style="width:100%; height:100%; object-fit:cover;">
-</div>
 
-<h1>{%if message_sent %} Successfully sent your message!
-          {% else %}Contact Me {% endif %}
-          </h1>
-          <span class="subheading">Have questions? I have answers.</span>
+    <div class="side-bar left-bar"
+         style="position:fixed; top:80px; bottom:0; left:20px; width:200px; z-index:0; pointer-events:none; opacity:0.5;">
+      <img src="{{ url_for('static', filename='assets/side-one.webp') }}" style="width:100%; height:100%; object-fit:cover;">
+    </div>
 
-<main class="mb-4">
+    <div class="side-bar right-bar"
+         style="position:fixed; top:80px; bottom:0; right:20px; width:200px; z-index:0; pointer-events:none; opacity:0.5;">
+      <img src="{{ url_for('static', filename='assets/side-two.webp') }}" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+
+    <section id="contact" class="contact-pane bg-dark text-white py-4">
   <div class="container px-4 px-lg-5">
+    <h1 class="mb-1">
+      {% if message_sent %}Successfully sent your message!{% else %}Contact Me{% endif %}
+    </h1>
+    <span class="subheading d-block mb-3">Have questions? I have answers.</span>
+
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
-        <p>
+        <p class="mb-3">
           Want to get in touch? Fill out the form below to send me a message and
           I will get back to you as soon as possible!
         </p>
-        <div class="my-5">
-          <form action="/form_entry" method="post"
-            id="contactForm"
-            name="sentMessage"
-          >
-            <div class="form-floating">
-              <input
-                class="form-control"
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Enter your name..."
-                required
-              />
+
+        <div class="my-4">
+          <form action="{{ url_for('main.form_entry') }}" method="post" id="contactForm" name="sentMessage" novalidate>
+            <div class="form-floating mb-3">
+              <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." required />
               <label for="name">Name</label>
             </div>
-            <div class="form-floating">
-              <input
-                class="form-control"
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Enter your email..."
-                required
-              />
+            <div class="form-floating mb-3">
+              <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email..." required />
               <label for="email">Email address</label>
             </div>
-            <div class="form-floating">
-              <input
-                class="form-control"
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="Enter your phone number..."
-                required
-              />
+            <div class="form-floating mb-3">
+              <input class="form-control" id="phone" name="phone" type="tel" placeholder="Enter your phone number..." />
               <label for="phone">Phone Number</label>
             </div>
-            <div class="form-floating">
-              <textarea
-                class="form-control"
-                id="message"
-                name="message"
-                placeholder="Enter your message here..."
-                required
-                style="height: 12rem"
-              ></textarea>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" id="message" name="message" placeholder="Enter your message here..." required style="height: 12rem"></textarea>
               <label for="message">Message</label>
             </div>
-            <br />
-            <button
-              class="btn btn-primary text-uppercase"
-              id="submitButton"
-              type="submit"
-            >
-              Send
-            </button>
+            <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
           </form>
         </div>
       </div>
     </div>
   </div>
+</section>
 
 
+    {% include "footer.html" %}
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/styles.css') }}"
-    />
-
-{% include "footer.html" %}
-</main>
-</div>
-</body>
+  </div>
+  </body>
 </html>
-
-
-
