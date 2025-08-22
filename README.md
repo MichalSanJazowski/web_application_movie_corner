@@ -28,6 +28,7 @@ It allows users to register, log in, browse movies and TV shows (via the TMDB AP
 - Flask-CKEditor
 - Flask-Session
 - Pytest (for testing)
+- Docker & Docker Compose
 
 ---
 
@@ -44,14 +45,16 @@ app/
  └── __init__.py       # create_app factory
 
 tests/                 # pytest tests
-run.py                 # Entry point
 requirements.txt       # Dependencies
-Procfile               # For deployment
+Dockerfile             # Docker build instructions
+docker-compose.yml     # Docker Compose configuration
+.dockerignore          # Ignored files for Docker
+.env                   # Environment variables
 ```
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Running with Docker
 
 1. Clone the repository:
    ```bash
@@ -59,19 +62,7 @@ Procfile               # For deployment
    cd movie-corner
    ```
 
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate   # on Linux/Mac
-   venv\Scripts\activate      # on Windows
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Create a `.env` file in the root directory with:
+2. Create a `.env` file in the root directory with your configuration:
    ```
    APP_CONFIG_KEY=your_secret_key
    DATABASE_URL=sqlite:///movies_base.db
@@ -80,16 +71,22 @@ Procfile               # For deployment
    PASSWORD=your_email_password
    ```
 
-5. Run the application:
+3. Build and run the container:
    ```bash
-   python run.py
+   docker compose up --build
    ```
-   The app will be available at:  
-   👉 http://127.0.0.1:5002/
+
+4. Open the app in your browser:  
+   👉 http://localhost:5002/
+
+5. To stop the app:
+   ```bash
+   docker compose down
+   ```
 
 ---
 
-## 🧪 Running Tests
+## 🧪 Running Tests (locally, not in Docker)
 To run tests with pytest:
 ```bash
 pytest
@@ -99,7 +96,7 @@ pytest
 
 ## 📌 Notes
 - You need a **TMDB API Bearer Token** to fetch movies and TV shows.
-- The app uses SQLite by default, but you can configure another database in `.env`.
+- By default, the app uses SQLite (with persistence through Docker volume). You can configure another database in `.env`.
 - Email sending (contact form) works with Gmail SMTP by default.
 
 ---

@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    ports:
+      - "5002:5002"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: "sqlite:////app/instance/movies_base.db"
+    volumes:
+      - instance_data:/app/instance
+    restart: unless-stopped
+
+volumes:
+  instance_data:

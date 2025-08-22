@@ -9,6 +9,7 @@ from . import auth_bp
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
+
     form = LoginForm()
     if form.validate_on_submit():
         password = form.password.data
