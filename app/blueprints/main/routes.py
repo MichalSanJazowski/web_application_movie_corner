@@ -15,17 +15,18 @@ def home():
         )
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
-        article = soup.find_all(name="a", class_="bc-title-link")
-        img = soup.find_all(name="a", class_="bc-img-link")
+
+        article = soup.select("h3.display-card-title a")
+        img = soup.find_all(name="a", class_="dc-img-link")
+        images = [src.get("srcset") for src in soup.select("picture source")[2:6]]
 
         if article:
-            images = [src.get("srcset") for src in soup.select("picture source")[3::4]]
-            titles = [x.get("title") for x in article]
+            titles = [x.get("title") or x.get_text(strip=True) for x in article]
+            print(titles, images)
             article_link = [y.get("href") for y in img]
     except requests.RequestException as e:
         current_app.logger.exception("Cannot download the News! %s", e)
         flash(" Cannot download the News!", "danger")
-
     return render_template("home.html", images=images, titles=titles, article_link=article_link)
 
 
